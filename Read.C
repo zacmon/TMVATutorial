@@ -1,3 +1,11 @@
+/*==============================================
+Read.C: a Cint script that experiments
+with different TMVA methods to analyze pT data
+
+Written by: Zach
+May, 2014
+=============================================*/
+
 #include <iostream>
 
 #include <TFile.h>
@@ -43,7 +51,7 @@ TH2F * corr_obs = new TH2F("Observed a and b Correlation", "Observed b vs Observ
 TFile * inFile = new TFile("TMVA_test.root");
 
 // Begin main function
-void read(){
+void Read(){
   // Get TestTree from the file
   TTree * testTree  = (TTree*) inFile -> Get("TestTree");
   
@@ -94,55 +102,55 @@ void read(){
   TCanvas * canvas = new TCanvas("Canvas");
 
   a_hist -> Draw();
-  canvas -> SaveAs("1.jpg");
+  canvas -> SaveAs("a_true.jpg");
   b_hist -> Draw();
-  canvas -> SaveAs("2.jpg");
+  canvas -> SaveAs("b_true.jpg");
   z_hist -> Draw();
-  canvas -> SaveAs("3.jpg");
+  canvas -> SaveAs("z_true.jpg");
 
   a_obs  -> Draw();
-  canvas -> SaveAs("4.jpg");
+  canvas -> SaveAs("a_obs.jpg");
   b_obs  -> Draw();
-  canvas -> SaveAs("5.jpg");
+  canvas -> SaveAs("b_obs.jpg");
   z_obs  -> Draw();
-  canvas -> SaveAs("6.jpg");
+  canvas -> SaveAs("z_obs.jpg");
   z_bdt  -> Draw();
-  canvas -> SaveAs("7.jpg");
+  canvas -> SaveAs("z_bdt.jpg");
   z_smlp -> Draw();
-  canvas -> SaveAs("8.jpg");
+  canvas -> SaveAs("z_smlp.jpg");
   z_dmlp -> Draw();
-  canvas -> SaveAs("9.jpg");
+  canvas -> SaveAs("z_dmlp.jpg");
 
   a_residual    -> Draw();
-  canvas        -> SaveAs("10.jpg");
+  canvas        -> SaveAs("a_res.jpg");
   b_residual    -> Draw();
-  canvas        -> SaveAs("11.jpg");
+  canvas        -> SaveAs("b_res.jpg");
   z_residual    -> Draw();
-  canvas        -> SaveAs("12.jpg");
+  canvas        -> SaveAs("z_res.jpg");
   bdt_residual  -> Draw();
-  canvas        -> SaveAs("13.jpg");
+  canvas        -> SaveAs("bdt_res.jpg");
   smlp_residual -> Draw();
-  canvas        -> SaveAs("14.jpg");
+  canvas        -> SaveAs("smlp_res.jpg");
   dmlp_residual -> Draw();
-  canvas        -> SaveAs("15.jpg");
+  canvas        -> SaveAs("dmlp_res.jpg");
 
   bdt_comp -> Draw();
-  canvas -> SaveAs("16.jpg");
+  canvas -> SaveAs("bdt_res_obs.jpg");
   smlp_comp -> Draw();
-  canvas -> SaveAs("17.jpg");
+  canvas -> SaveAs("smlp_res_obs.jpg");
   dmlp_comp -> Draw();
-  canvas -> SaveAs("18.jpg");
+  canvas -> SaveAs("dmlp_res_dmlp.jpg");
 
   corr_true -> Draw();
-  canvas -> SaveAs("19.jpg");
+  canvas -> SaveAs("corr_true.jpg");
   corr_true   -> Draw("COLZ");
-  canvas -> SaveAs("20.jpg");
+  canvas -> SaveAs("corr_true_color.jpg");
   cout << "True value correlation: " << corr_true -> GetCorrelationFactor() << "\n";
 
   corr_obs -> Draw();
-  canvas -> SaveAs("21.jpg");
+  canvas -> SaveAs("corr_obs.jpg");
   corr_obs   -> Draw("COLZ");
-  canvas -> SaveAs("22.jpg");
+  canvas -> SaveAs("corr_obs_corr.jpg");
   cout << "Observed value correlation: " << corr_obs -> GetCorrelationFactor() << "\n";
 
   // CLose TFile
