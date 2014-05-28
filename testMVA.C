@@ -1,6 +1,6 @@
 /*==============================================
 testMVA.C: a Cint script that tests the
-BDT and MLP packages
+BDT and MLP packages using toy data
 
 Written by: Zach
 May, 2014
