@@ -77,15 +77,17 @@ void testMVA(){
   factory -> PrepareTrainingAndTestTree(cut, option_train);
   
   // BDT analysis
-  TString option_BDT = TString("!H:!V:NTrees=5000:MaxDepth=4:nEventsMin=150:nCuts=100:BoostType=Grad:Shrinkage:0.4:NegWeightTreatment=NoNegWeightsInTraining:SeparationType=RegressionVariance:DoBoostMonitor=True:PruneMethod=NoPruning");
+  TString option_BDT = TString("!H:!V:NTrees=5000:MaxDepth=4:nEventsMin=150:nCuts=100:BoostType=Grad:Shrinkage=0.4:NegWeightTreatment=NoNegWeightsInTraining:SeparationType=RegressionVariance:DoBoostMonitor=True:PruneMethod=NoPruning");
    factory -> BookMethod(TMVA::Types::kBDT, "BDT", option_BDT);
   
   // Shallow MLP Analysis
-  TString option_SMLP = TString("!H:!V:VarTransform=Norm:NCycles=20000:HiddenLayers=1:NeuronType=tanh:EstimatorType=MSE:TrainingMethod=BFGS:LearningRate=0.0002:DecayRate=0.0001:TestRate=3:Sampling=0.3:SamplingEpoch=0.8:ConvergenceImprove=1e-6:ConvergenceTests=15:UseRegulator");
+  TString option_SMLP = TString("!H:!V:VarTransform=Norm:NeuronType=tanh:NCycles=300:HiddenLayers=1:TestRate=6:TrainingMethod=BFGS:Sampling=0.3:LearningRate=0.05:DecayRate=1e-5:\
+SamplingEpoch=0.8:ConvergenceImprove=1e-6:ConvergenceTests=15:UseRegulator");
    factory -> BookMethod(TMVA::Types::kMLP, "Shallow_MLP", option_SMLP);
   
   // Deep MLP Analysis
-  TString option_DMLP = TString("!H:!V:VarTransform=Norm:NCycles=20000:HiddenLayers=10:NeuronType=tanh:EstimatorType=MSE:TrainingMethod=BFGS:LearningRate=0.0002:DecayRate=0.0001:TestRate=3:Sampling=0.3:SamplingEpoch=0.8:ConvergenceImprove=1e-6:ConvergenceTests=15:!UseRegulator");
+  TString option_DMLP = TString("!H:!V:VarTransform=Norm:NeuronType=tanh:NCycles=300:HiddenLayers=5:TestRate=6:TrainingMethod=BFGS:Sampling=0.3:LearningRate=0.05:DecayRate=1e-5:\
+SamplingEpoch=0.8:ConvergenceImprove=1e-6:ConvergenceTests=15:UseRegulator");
   factory -> BookMethod(TMVA::Types::kMLP, "Deep_MLP", option_DMLP);
   
   // Execute analysis
